@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Las Carolita's · Estructura 1 · PRAXIS</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#2A2131;--pk:#D93F7C;--pk2:#EF5691;--pk1:#FDE9F1;--li:#C9A7E0;--li7:#8B5EB0;--li9:#3E2A52;--li1:#F5EEFA;--mt:#B8D8C0;--mt1:#EAF4ED;--rs:#F7DAED;--mu:#6F6577;--ln:#EEE6F2;--w:#fff}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{font-family:Lexend,system-ui,sans-serif;color:var(--ink);background:#ECE6F0;-webkit-font-smoothing:antialiased;touch-action:manipulation}
+svg{display:block}
+/* ---------- barra PRAXIS ---------- */
+.tool{position:fixed;inset:0 0 auto 0;height:58px;z-index:50;background:#0F1B2E;color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 22px;gap:14px}
+.tool b{font-weight:800;letter-spacing:.18em;font-size:14px}
+.tool b span{font-weight:400;letter-spacing:.04em;opacity:.65;margin-left:12px;font-size:13px}
+.seg{display:flex;background:rgba(255,255,255,.08);border-radius:999px;padding:4px}
+.seg button{all:unset;cursor:pointer;display:flex;align-items:center;gap:7px;padding:7px 16px;border-radius:999px;font:500 13px Lexend;color:#C9D3E3}
+.seg button.on{background:#fff;color:#0F1B2E}
+.seg.pg button{padding:7px 14px}
+.stage{position:fixed;inset:58px 0 0 0;display:flex;justify-content:center;align-items:flex-start;padding:22px;overflow:hidden}
+.device{width:100%;max-width:1360px;height:100%;background:#fff;border-radius:12px;box-shadow:0 30px 80px -30px rgba(40,20,60,.35);overflow:hidden;display:flex;flex-direction:column;transition:max-width .5s cubic-bezier(.2,.8,.2,1),border-radius .5s}
+.chrome{height:38px;flex:none;background:#F1EFF2;display:flex;align-items:center;gap:7px;padding:0 14px;border-bottom:1px solid #E4E0E6}
+.chrome i{width:11px;height:11px;border-radius:50%;background:#DAD5DC}
+.chrome .url{margin-left:14px;flex:1;max-width:420px;height:24px;border-radius:7px;background:#fff;display:flex;align-items:center;gap:6px;padding:0 10px;font-size:12px;color:#777}
+.screen{flex:1;overflow-y:auto;overflow-x:hidden;scroll-behavior:smooth}
+.device.mob{max-width:390px;border-radius:44px;border:10px solid #111;height:min(100%,844px)}
+.device.mob .chrome{display:none}
+@media (max-width:760px){
+  .tool{height:52px;padding:0 12px}.tool b span{display:none}
+  .stage{inset:52px 0 0 0;padding:0}.device,.device.mob{max-width:none;border-radius:0;border:0;height:100%}
+  .chrome,.seg:not(.pg){display:none}
+}
+/* ---------- sitio ---------- */
+.site{container-type:inline-size;background:#fff}
+.wrap{max-width:1240px;margin:0 auto;padding:0 40px}
+.kick{font:600 11px Lexend;letter-spacing:.2em;text-transform:uppercase;color:var(--li7);margin-bottom:10px}
+.h2{font:700 34px/1.12 Lexend;letter-spacing:-.025em}
+.h2 em{font-style:normal;color:var(--pk)}
+.sub{font-size:16px;line-height:1.6;color:var(--mu);margin-top:12px;max-width:520px;font-weight:300}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:50px;padding:0 28px;border-radius:999px;font:600 14px Lexend;letter-spacing:.02em;text-decoration:none;cursor:pointer;background:var(--pk);color:#fff;border:0}
+.btn.w{background:#fff;color:var(--ink)}.btn.o{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--ink)}
+.btn.k{background:var(--ink)}
+.sec{padding:84px 0}
+.head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:30px;gap:20px}
+.link{font:500 13px Lexend;color:var(--ink);text-decoration:underline;text-underline-offset:4px;white-space:nowrap}
+/* anuncio */
+.ann{background:var(--rs);color:var(--li9);height:38px;overflow:hidden;position:relative}
+.ann-t{display:flex;flex-direction:column;animation:ann 12s infinite}
+.ann-t div{height:38px;display:flex;align-items:center;justify-content:center;gap:10px;font:500 12px Lexend;letter-spacing:.05em}
+.ann-t svg{width:15px;height:15px;color:var(--pk)}
+@keyframes ann{0%,28%{transform:translateY(0)}33%,61%{transform:translateY(-38px)}66%,94%{transform:translateY(-76px)}100%{transform:translateY(-114px)}}
+/* encabezado */
+.hdr{position:sticky;top:0;z-index:5;background:rgba(255,255,255,.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--ln)}
+.hdr .wrap{height:76px;display:flex;align-items:center;gap:30px}
+.logo{display:flex;align-items:center;text-decoration:none}
+.logo img{height:52px;width:auto}
+.nav{display:flex;gap:26px;margin-left:auto;font:500 13px Lexend}
+.nav a{color:var(--ink);text-decoration:none}
+.ico{display:flex;gap:16px;margin-left:24px}
+.ico svg{width:22px;height:22px}
+.cart{position:relative}.cart b{position:absolute;top:-6px;right:-8px;background:var(--pk);color:#fff;font:600 10px Lexend;width:17px;height:17px;border-radius:50%;display:grid;place-items:center}
+.burger{display:none;width:24px;height:24px}
+/* banner */
+.hero{position:relative;height:640px;overflow:hidden;background:var(--li);color:var(--ink)}
+.bgv{display:none;position:absolute;inset:0}
+.bgv video,.bgv .poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hcols{position:absolute;top:0;bottom:0;right:0;width:60%;display:grid;grid-template-columns:repeat(3,1fr);gap:6px;background:var(--li)}
+.hcols div{position:relative;overflow:hidden}
+.hcols div:nth-child(2){transform:translateY(-34px)}.hcols div:nth-child(2) video{height:calc(100% + 68px)}
+.hcols video{width:100%;height:100%;object-fit:cover}
+.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--li) 0%,var(--li) 40%,rgba(201,167,224,.6) 52%,rgba(201,167,224,0) 70%)}
+.hero .wrap{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:center}
+.hero .kick{color:var(--li9)}
+.hero h1{font:800 58px/1.04 Lexend;letter-spacing:-.035em;max-width:620px}
+.hero h1 em{font-style:normal;color:#fff}
+.hero p{font-size:18px;line-height:1.6;max-width:470px;margin-top:20px;color:var(--li9)}
+.hero .cta{display:flex;gap:12px;margin-top:32px;flex-wrap:wrap}
+.chips{display:flex;gap:10px;margin-top:34px;flex-wrap:wrap}
+.chips span{font:500 11px Lexend;letter-spacing:.1em;text-transform:uppercase;padding:8px 13px;border:1px solid rgba(62,42,82,.35);border-radius:999px;color:var(--li9)}
+/* beneficios */
+.bens{border-bottom:1px solid var(--ln)}
+.ben-g{display:grid;grid-template-columns:repeat(4,1fr)}
+.ben{display:flex;gap:14px;align-items:center;padding:28px 18px;border-right:1px solid var(--ln)}
+.ben:last-child{border-right:0}
+.ben svg{width:30px;height:30px;color:var(--pk);flex:none}
+.ben b{display:block;font:600 14px Lexend}
+.ben span{font-size:13px;color:var(--mu);font-weight:300}
+/* categorías */
+.cats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.cat{position:relative;aspect-ratio:3/4.2;border-radius:16px;overflow:hidden;background:var(--li9);text-decoration:none;color:#fff;display:block}
+.cat video,.cat img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.cat:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(40,20,55,.8))}
+.cat div{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:20px}
+.cat i{display:block;width:28px;height:3px;border-radius:2px;background:var(--mt);margin-bottom:10px}
+.cat b{font:700 20px Lexend;letter-spacing:-.01em}
+.cat span{display:block;font-size:13px;opacity:.85;margin-top:4px;font-weight:300}
+/* productos */
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:28px 18px}
+.card{text-decoration:none;color:var(--ink);display:block}
+.card .ph{position:relative;aspect-ratio:1;border-radius:14px;overflow:hidden;background:var(--li1)}
+.card .ph img{width:100%;height:100%;object-fit:cover}
+.tag{position:absolute;top:10px;left:10px;background:#fff;color:var(--li7);font:600 10px Lexend;letter-spacing:.08em;text-transform:uppercase;padding:5px 9px;border-radius:999px}
+.tag.off{background:var(--pk);color:#fff}
+.card h3{font:500 15px Lexend;margin-top:14px;line-height:1.35}
+.card .lb{font-size:12px;color:var(--li7);margin-top:4px;font-weight:400}
+.pr{margin-top:10px;display:grid;gap:3px}
+.pr b{font:700 18px Lexend}
+.pr s{font-size:13px;color:#A59CAB;margin-left:8px;font-weight:400}
+.pr .tr{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--pk);font-weight:500}
+.pr .cu{font-size:12px;color:var(--mu);font-weight:300}
+.nota{margin-top:26px;font-size:12px;color:var(--mu);display:flex;gap:8px;align-items:center}
+.nota svg{width:15px;height:15px;color:var(--li7)}
+.brand{display:flex;align-items:center;gap:22px;background:var(--li1);border-radius:18px;padding:22px 26px;margin-bottom:26px}
+.brand b{font:800 22px Lexend;letter-spacing:.06em}
+.brand span{font-size:14px;color:var(--mu);font-weight:300}
+.brand .bdg{margin-left:auto;font:600 11px Lexend;letter-spacing:.1em;text-transform:uppercase;background:var(--mt);color:var(--li9);padding:8px 14px;border-radius:999px;white-space:nowrap}
+.brand.mt{background:var(--mt1)}
+/* problema solución */
+.ps{background:var(--pk1)}
+.ps-g{display:grid;grid-template-columns:1.1fr .9fr;gap:70px;align-items:center}
+.vid{position:relative;width:100%;max-width:360px;justify-self:center;aspect-ratio:9/16;border-radius:20px;overflow:hidden;background:#000;box-shadow:0 30px 60px -25px rgba(62,42,82,.5)}
+.vid video{width:100%;height:100%;object-fit:cover}
+.snd{position:absolute;right:12px;bottom:12px;z-index:2;display:flex;align-items:center;gap:7px;background:rgba(0,0,0,.6);color:#fff;border:0;border-radius:999px;padding:8px 13px;font:500 12px Lexend;cursor:pointer;backdrop-filter:blur(6px)}
+.snd svg{width:16px;height:16px}
+.ig{position:absolute;left:12px;top:12px;z-index:2;display:flex;align-items:center;gap:8px;color:#fff;font:500 12px Lexend;text-shadow:0 1px 4px rgba(0,0,0,.6)}
+.ig img{width:28px;height:28px;border-radius:50%;border:2px solid #fff;background:#fff;object-fit:contain}
+/* testimonios */
+.marq{overflow:hidden;mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.mt{display:flex;gap:18px;width:max-content;animation:mq 40s linear infinite}
+@keyframes mq{to{transform:translateX(-50%)}}
+.tc{width:340px;flex:none;border:1px solid var(--ln);border-radius:16px;padding:24px;background:#fff}
+.st{display:flex;gap:2px;color:#E9A21B}.st svg{width:16px;height:16px}
+.tc p{margin-top:14px;font-size:14px;line-height:1.6;color:var(--mu)}
+.tc .ln{height:9px;border-radius:5px;background:var(--li1);margin-top:9px}
+.tc .who{display:flex;gap:10px;align-items:center;margin-top:18px;font:500 13px Lexend}
+.tc .who i{width:34px;height:34px;border-radius:50%;background:var(--rs)}
+.tc small{display:block;font:300 11px Lexend;color:var(--mu)}
+.tnote{text-align:center;font-size:12px;color:var(--mu);margin-top:20px}
+/* carrusel de reels */
+.rls{background:var(--li1)}
+.rl-tr{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:4px 40px 10px;margin:0 -40px;scroll-padding:0 40px}
+.rl-tr::-webkit-scrollbar{display:none}
+.rl{position:relative;flex:none;width:calc((100% - 80px - 48px)/4.3);min-width:230px;aspect-ratio:9/16;border-radius:18px;overflow:hidden;background:var(--li9);scroll-snap-align:start;box-shadow:0 20px 40px -24px rgba(62,42,82,.6)}
+.rl video{width:100%;height:100%;object-fit:cover}
+.rl:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.35),transparent 22%,transparent 75%,rgba(0,0,0,.35));pointer-events:none}
+.arr{display:flex;gap:10px}
+.arr button{all:unset;cursor:pointer;width:44px;height:44px;border-radius:50%;border:1.5px solid var(--ink);display:grid;place-items:center}
+.arr svg{width:18px;height:18px}
+.rl-f{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:26px;flex-wrap:wrap}
+.rl-f a{display:inline-flex;align-items:center;gap:10px;font:600 14px Lexend;color:var(--ink);text-decoration:none}
+.rl-f a svg{width:22px;height:22px;color:var(--pk)}
+/* faq */
+.faq-g{display:grid;grid-template-columns:.8fr 1.2fr;gap:70px}
+.fq{border-bottom:1px solid var(--ln)}
+.fq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:16px;padding:22px 0;font:500 16px Lexend}
+.fq summary::-webkit-details-marker{display:none}
+.fq summary svg{width:20px;height:20px;flex:none;transition:transform .3s;color:var(--pk)}
+.fq[open] summary svg{transform:rotate(45deg)}
+.fq p{padding:0 40px 22px 0;font-size:15px;line-height:1.65;color:var(--mu);font-weight:300}
+/* cta */
+.cta-b{position:relative;border-radius:24px;overflow:hidden;background:var(--li);color:var(--ink);padding:70px 60px;display:grid;grid-template-columns:1.3fr .7fr;gap:40px;align-items:center}
+.cta-b .h2{font-size:38px}
+.cta-b .h2 em{color:#fff}
+.cta-b .kick{color:var(--li9)}
+.cta-b .sub{color:var(--li9)}
+.cta-b .btns{display:flex;flex-direction:column;gap:12px}
+.cta-b .spk{position:absolute;right:-30px;top:-40px;width:220px;opacity:.35;color:#fff}
+/* mapa */
+.map{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--ln);border-radius:24px;overflow:hidden}
+.map-i{padding:50px}
+.mr{display:flex;gap:14px;margin-top:20px;font-size:15px;line-height:1.5}
+.mr svg{width:22px;height:22px;color:var(--pk);flex:none;margin-top:2px}
+.mr b{display:block;font-weight:500}
+.mr span{color:var(--mu);font-weight:300}
+.map-i .btn{margin-top:30px}
+.map-p{position:relative;min-height:360px}
+.map-p img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+/* pie */
+.foot{background:var(--li9);color:#D9CCE4;margin-top:84px;padding:64px 0 28px}
+.fg{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px}
+.foot .logo img{height:64px;background:#fff;border-radius:14px;padding:4px 10px}
+.foot p{font-size:14px;line-height:1.65;margin-top:18px;max-width:300px;font-weight:300}
+.foot h4{font:600 12px Lexend;letter-spacing:.14em;text-transform:uppercase;color:#fff;margin-bottom:16px}
+.foot ul{list-style:none;display:grid;gap:10px;font-size:14px;font-weight:300}
+.pay{display:flex;gap:8px;flex-wrap:wrap}
+.pay span{border:1px solid #5A4470;border-radius:6px;padding:6px 10px;font:500 11px Lexend;color:#EDE4F4}
+.fb{border-top:1px solid #54406A;margin-top:50px;padding-top:22px;display:flex;justify-content:space-between;font-size:12px;color:#B3A4C0}
+.wa{position:sticky;bottom:18px;margin:-70px 18px 18px auto;width:56px;height:56px;border-radius:50%;background:#25D366;display:grid;place-items:center;box-shadow:0 10px 25px -8px rgba(0,0,0,.4);z-index:6}
+.wa svg{width:28px;height:28px;color:#fff}
+/* ---------- ficha de producto ---------- */
+.crumb{display:flex;gap:8px;font-size:12.5px;color:var(--mu);padding:26px 0 22px;flex-wrap:wrap}
+.crumb a{color:var(--mu);text-decoration:none}.crumb b{color:var(--ink);font-weight:500}
+.fx{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:start}
+.fx-gal{position:sticky;top:96px}
+.fx-main{position:relative;aspect-ratio:1;border-radius:18px;overflow:hidden;background:var(--li1)}
+.fx-main img,.fx-main video{width:100%;height:100%;object-fit:cover}
+.fx-th{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:10px}
+.fx-th button{all:unset;cursor:pointer;aspect-ratio:1;border-radius:12px;overflow:hidden;position:relative;outline:2px solid transparent;outline-offset:-2px}
+.fx-th button.on{outline-color:var(--pk)}
+.fx-th img{width:100%;height:100%;object-fit:cover}
+.fx-th .pl{position:absolute;inset:0;display:grid;place-items:center;background:rgba(0,0,0,.28);color:#fff}
+.fx-th .pl svg{width:22px;height:22px}
+.fx-tags{display:flex;gap:6px;flex-wrap:wrap}
+.fx-tags span{font:600 10px Lexend;letter-spacing:.08em;text-transform:uppercase;color:var(--li9);background:var(--mt1);padding:5px 9px;border-radius:999px}
+.fx-info h1{font:700 32px/1.12 Lexend;letter-spacing:-.025em;margin-top:14px}
+.fx-st{display:flex;align-items:center;gap:2px;color:#E9A21B;margin-top:10px}
+.fx-st svg{width:15px;height:15px}
+.fx-st a{margin-left:10px;font-size:12.5px;color:var(--mu)}
+.emb{margin-top:22px;border:1px solid var(--ln);border-radius:16px;overflow:hidden}
+.emb-r{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 18px;border-top:1px solid var(--ln)}
+.emb-r:first-child{border-top:0}
+.emb-r span{font:600 11px Lexend;letter-spacing:.12em;text-transform:uppercase;color:var(--mu);display:flex;align-items:center;gap:8px}
+.emb-r span em{font-style:normal;background:#fff;color:var(--pk);padding:3px 7px;border-radius:999px;letter-spacing:.04em}
+.emb-r b{font:700 20px Lexend}
+.emb-r b.cu{font:500 14px Lexend;color:var(--ink);text-align:right}
+.emb-r.best{background:var(--pk);color:#fff}
+.emb-r.best span{color:#FFE1EC}
+.emb-r.best b{font-size:26px}
+.hoy{margin-top:14px;display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:center;padding:14px 16px;border-radius:16px;background:var(--mt1);border:1px solid var(--mt)}
+.hoy-i{width:42px;height:42px;border-radius:50%;background:var(--li9);color:#fff;display:grid;place-items:center}
+.hoy-i svg{width:22px;height:22px}
+.hoy-t b{display:block;font:700 14px Lexend;color:var(--li9)}
+.hoy-t span{font-size:13px;color:var(--mu);line-height:1.4;display:block;margin-top:2px}
+.fx-lbl{font:600 11px Lexend;letter-spacing:.14em;text-transform:uppercase;margin:22px 0 10px}
+.fx-op{display:flex;gap:8px;flex-wrap:wrap}
+.fx-op span{cursor:pointer;padding:11px 18px;border:1px solid var(--ln);border-radius:999px;font:400 14px Lexend}
+.fx-op span.on{border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+.fx-buy{display:flex;gap:10px;margin-top:20px}
+.fx-buy .btn{flex:1;height:54px;font-size:15px}
+.qty{display:flex;align-items:center;border:1px solid var(--ln);border-radius:999px}
+.qty button{all:unset;cursor:pointer;width:42px;height:52px;display:grid;place-items:center;font-size:18px}
+.qty b{min-width:22px;text-align:center;font-weight:600}
+.fx-wa{display:flex;gap:10px;align-items:center;margin-top:12px;font-size:13px;color:var(--li7);font-weight:500;text-decoration:none}
+.fx-wa svg{width:18px;height:18px;flex:none}
+.ent{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:20px}
+.ent div{display:flex;gap:10px;align-items:flex-start;border:1px solid var(--ln);border-radius:14px;padding:12px}
+.ent svg{width:22px;height:22px;color:var(--pk);flex:none}
+.ent span{font-size:12px;color:var(--mu);line-height:1.4}
+.ent b{display:block;font-size:13px;color:var(--ink);font-weight:500}
+.gar{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
+.gar div{display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center;font-size:11.5px;font-weight:500;padding:12px 6px;background:var(--li1);border-radius:14px}
+.gar svg{width:22px;height:22px;color:var(--li7)}
+.fx-nota{font-size:11.5px;color:var(--mu);margin-top:12px}
+.fx-acc{margin-top:18px;border-top:1px solid var(--ln)}
+.fx-bar{display:none}
+/* aparición */
+.js .rv{opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.2,.8,.2,1),transform .8s cubic-bezier(.2,.8,.2,1);transition-delay:calc(var(--i,0)*90ms)}
+.js .rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.js .rv{opacity:1;transform:none}.mt,.ann-t{animation:none}}
+/* ---------- celular (por ancho del sitio) ---------- */
+@container (max-width:760px){
+  .wrap{padding:0 18px}
+  .sec{padding:56px 0}
+  .h2{font-size:25px}
+  .sub{font-size:15px}
+  .hdr .wrap{height:64px;gap:12px}
+  .burger{display:block}
+  .logo{margin:0 auto}.logo img{height:42px}
+  .nav{display:none}.ico{margin-left:0;gap:12px}.ico .opt{display:none}
+  .hero{height:600px;color:#fff}
+  .hcols{display:none}.bgv{display:block}
+  .hero:after{background:linear-gradient(180deg,rgba(62,42,82,.05) 20%,rgba(50,30,68,.9) 75%)}
+  .hero .wrap{justify-content:flex-end;padding-bottom:40px}
+  .hero .kick{color:var(--rs)}
+  .hero h1{font-size:34px}
+  .hero h1 em{color:var(--pk2)}
+  .hero p{font-size:15px;margin-top:14px;color:#F1E8F7}
+  .hero .cta{margin-top:22px}.hero .cta .btn{flex:1;padding:0 12px}
+  .hero .btn.o{color:#fff;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.8)}
+  .chips{display:none}
+  .ben-g{grid-template-columns:1fr 1fr;padding:6px 0}
+  .ben{border-right:0;border-bottom:1px solid var(--ln);padding:14px 4px;gap:10px}
+  .ben:nth-last-child(-n+2){border-bottom:0}
+  .ben svg{width:24px;height:24px}.ben b{font-size:12.5px}.ben span{font-size:11.5px}
+  .cats{grid-template-columns:1fr 1fr;gap:10px}
+  .cat b{font-size:16px}.cat div{padding:14px}
+  .grid{grid-template-columns:1fr 1fr;gap:24px 12px}
+  .card h3{font-size:14px}.pr b{font-size:16px}.pr .tr{font-size:12px}
+  .head .link,.arr{display:none}
+  .brand{padding:16px;gap:12px;flex-wrap:wrap}.brand b{font-size:18px}.brand span{font-size:12.5px;flex-basis:100%;order:3}.brand .bdg{font-size:9.5px;padding:6px 10px}
+  .faq-g{grid-template-columns:1fr;gap:36px}
+  /* texto y video lado a lado también en celular */
+  .ps-g{grid-template-columns:1fr 44%;gap:14px}
+  .ps-g .h2{font-size:19px}
+  .ps-g .sub{font-size:13px;line-height:1.5;margin-top:8px}
+  .ps-g .btn{height:40px;padding:0 16px;font-size:12px;margin-top:14px}
+  .vid{max-width:none;border-radius:14px}
+  .ig{font-size:10px;left:8px;top:8px;gap:5px}.ig img{width:20px;height:20px}
+  .snd{right:6px;bottom:6px;padding:6px 9px;font-size:10px}.snd span{display:none}
+  .rl-tr{padding:4px 18px 10px;margin:0 -18px;gap:10px;scroll-padding:0 18px}
+  .rl{width:58%;min-width:0;border-radius:14px}
+  .tc{width:280px}
+  .cta-b{grid-template-columns:1fr;padding:40px 24px}.cta-b .h2{font-size:26px}
+  .map{grid-template-columns:1fr}.map-i{padding:28px 22px}.map-p{min-height:230px;order:-1}
+  .fg{grid-template-columns:1fr 1fr;gap:32px}.fg>div:first-child{grid-column:1/-1}
+  .fb{flex-direction:column;gap:6px}
+  /* ficha */
+  .crumb{padding:16px 0 12px;font-size:11.5px}
+  .fx{grid-template-columns:1fr;gap:20px}
+  .fx-gal{position:static;margin:0 -18px}
+  .fx-main{border-radius:0}
+  .fx-th{padding:0 18px;gap:8px}
+  .fx-info h1{font-size:24px}
+  .emb-r{padding:12px 14px}.emb-r b{font-size:17px}.emb-r.best b{font-size:22px}.emb-r b.cu{font-size:12.5px}
+  .emb-r span{font-size:10px}
+  .fx-buy .btn{height:52px;font-size:13px;white-space:nowrap;padding:0 12px}
+  .ent{grid-template-columns:1fr}
+  .fx-bar{display:flex;position:sticky;bottom:0;z-index:7;align-items:center;justify-content:space-between;gap:12px;background:#fff;border-top:1px solid var(--ln);padding:10px 18px;box-shadow:0 -8px 24px -12px rgba(0,0,0,.25)}
+  .fx-bar small{display:block;font-size:11px;color:var(--mu)}
+  .fx-bar b{font:700 17px Lexend;color:var(--pk)}
+  .fx-bar b i{font:400 11px Lexend;font-style:normal;color:var(--mu)}
+  .fx-bar .btn{height:46px;padding:0 22px}
+  #ficha ~ .foot{margin-top:40px}
+}
+</style>
+</head>
+<body>
+<div class="tool">
+  <b>PRAXIS<span>Las Carolita's · vista previa de tu web</span></b>
+  <div class="seg pg"><button data-v="home" class="on">Inicio</button><button data-v="ficha">Producto</button></div>
+  <div class="seg">
+    <button data-m="pc" class="on"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg>PC</button>
+    <button data-m="mob"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="7" y="2" width="10" height="20" rx="2.5"/><path d="M11 18h2"/></svg>Celular</button>
+  </div>
+</div>
+
+<div class="stage">
+<div class="device" id="device">
+ <div class="chrome"><i></i><i></i><i></i><div class="url"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>lascarolitas.com.ar</div></div>
+ <div class="screen" id="screen">
+ <div class="site">
+
+  <!-- 1 · Barra de anuncios -->
+  <div class="ann"><div class="ann-t">
+    <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>3 cuotas sin interés en toda la tienda</div>
+    <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/></svg>Envío gratis en compras superiores a $120.000</div>
+    <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/></svg>Nueva colección Cat Eye de PinkMask</div>
+    <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>3 cuotas sin interés en toda la tienda</div>
+  </div></div>
+
+  <!-- 2 · Encabezado -->
+  <header class="hdr"><div class="wrap">
+    <svg class="burger" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    <a class="logo" href="#top"><img src="logo.png" alt="Las Carolita's"></a>
+    <nav class="nav"><a href="#cats">Uñas</a><a href="#cats">Maquillaje</a><a href="#cats">Skincare</a><a href="#cats">Cuerpo</a><a href="#cats">Pestañas</a><a href="#reels">Nosotras</a></nav>
+    <div class="ico">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <svg class="opt" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>
+      <span class="cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 8h14l-1.2 12H6.2z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg><b>2</b></span>
+    </div>
+  </div></header>
+
+  <div id="home">
+  <!-- 3 · Banner con video -->
+  <section class="hero" id="top">
+    <div class="bgv"><img class="poster" src="hero.jpg" alt=""><video class="av" src="hero.mp4" poster="hero.jpg" muted loop playsinline preload="metadata"></video></div>
+    <div class="hcols">
+      <div><video class="av" src="hero.mp4" poster="hero.jpg" muted loop playsinline preload="metadata"></video></div>
+      <div><video class="av" src="h2.mp4" poster="h2.jpg" muted loop playsinline preload="metadata"></video></div>
+      <div><video class="av" src="h3.mp4" poster="h3.jpg" muted loop playsinline preload="metadata"></video></div>
+    </div>
+    <div class="wrap">
+      <div class="kick rv">Uñas · maquillaje · skincare · Bahía Blanca</div>
+      <h1 class="rv" style="--i:1">Todo para tus uñas y tu belleza, <em>en un solo lugar.</em></h1>
+      <p class="rv" style="--i:2">Insumos profesionales y productos para cuidarte, de marcas como Kamena, PinkMask y Biobellus. Te asesoramos para que elijas lo indicado.</p>
+      <div class="cta rv" style="--i:3"><a class="btn" href="#prods">Comprar ahora</a><a class="btn o" href="#cats">Ver categorías</a></div>
+      <div class="chips rv" style="--i:4"><span>Para profesionales</span><span>Marcas hipoalergénicas</span><span>3 cuotas sin interés</span></div>
+    </div>
+  </section>
+
+  <!-- 4 · Beneficios -->
+  <section class="bens"><div class="wrap"><div class="ben-g">
+    <div class="ben rv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M6 15h4"/></svg><div><b>3 cuotas sin interés</b><span>En toda la tienda</span></div></div>
+    <div class="ben rv" style="--i:1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/></svg><div><b>Envíos a todo el país</b><span>Gratis desde $120.000</span></div></div>
+    <div class="ben rv" style="--i:2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l8 3v6c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V6z"/><path d="m8.5 12 2.5 2.5 4.5-5"/></svg><div><b>Marcas originales</b><span>Hipoalergénicas y reconocidas</span></div></div>
+    <div class="ben rv" style="--i:3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 21h18M5 21V9l7-5 7 5v12"/><path d="M10 21v-6h4v6"/></svg><div><b>Retiro en el local</b><span>Vicente López 1194</span></div></div>
+  </div></div></section>
+
+  <!-- 5 · Categorías con video -->
+  <section class="sec" id="cats"><div class="wrap">
+    <div class="head rv"><div><div class="kick">Categorías</div><div class="h2">¿Qué estás <em>buscando</em> hoy?</div></div><a class="link" href="#prods">Ver todo</a></div>
+    <div class="cats">
+      <a class="cat rv" href="#prods"><video class="av" src="c-unas.mp4" poster="c-unas.jpg" muted loop playsinline preload="none"></video><div><i></i><b>Uñas</b><span>Semipermanentes, construcción y nail art</span></div></a>
+      <a class="cat rv" style="--i:1" href="#prods"><video class="av" src="c-maq.mp4" poster="c-maq.jpg" muted loop playsinline preload="none"></video><div><i></i><b>Maquillaje</b><span>Rostro, ojos y labios</span></div></a>
+      <a class="cat rv" style="--i:2" href="#prods"><video class="av" src="c-skin.mp4" poster="c-skin.jpg" muted loop playsinline preload="none"></video><div><i></i><b>Skincare</b><span>Limpieza, serums y cremas</span></div></a>
+      <a class="cat rv" style="--i:3" href="#prods"><video class="av" src="c-cuerpo.mp4" poster="c-cuerpo.jpg" muted loop playsinline preload="none"></video><div><i></i><b>Cuerpo</b><span>Cremas, emulsiones y tratamientos</span></div></a>
+    </div>
+  </div></section>
+
+  <!-- 6 · Productos destacados 1 · Cat Eye PinkMask -->
+  <section class="sec" id="prods" style="padding-top:0"><div class="wrap">
+    <div class="head rv"><div><div class="kick">Nueva colección</div><div class="h2">Cat Eye de <em>PinkMask</em></div></div><a class="link" href="#prods">Ver la colección</a></div>
+    <div class="grid" id="g1"></div>
+  </div></section>
+
+  <!-- 7 · Productos destacados 2 · Kamena -->
+  <section class="sec" id="prods2" style="padding-top:0"><div class="wrap">
+    <div class="head rv"><div><div class="kick">Destacados</div><div class="h2">Conocé <em>Kamena</em></div></div><a class="link" href="#prods2">Ver todo Kamena</a></div>
+    <div class="grid" id="g2"></div>
+    <div class="nota"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg>Precio, transferencia y cuotas salen de tu Tiendanube: se cargan con tus precios reales.</div>
+  </div></section>
+
+  <!-- 8 · Problema → solución con video -->
+  <section class="sec ps" id="ps"><div class="wrap ps-g">
+    <div class="rv">
+      <div class="h2">¿El maquillaje te queda <em>brilloso</em> a media tarde?</div>
+      <p class="sub">La crema fijadora matificante de DAPOP controla el brillo y deja tu maquillaje intacto todo el día. La probamos en el local y te la recomendamos.</p>
+      <a class="btn" href="#prods">Quiero probarla</a>
+    </div>
+    <div class="vid rv" style="--i:2">
+      <div class="ig"><img src="logo.png" alt="">lascarolitas.store</div>
+      <video class="av snd-v" src="ps.mp4" poster="ps.jpg" muted loop playsinline preload="none"></video>
+      <button class="snd" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="m17 9 4 6M21 9l-4 6"/></svg><span>Activar sonido</span></button>
+    </div>
+  </div></section>
+
+  <!-- 9 · Testimonios -->
+  <section class="sec" id="tst">
+    <div class="wrap"><div class="head rv" style="justify-content:center;text-align:center"><div><div class="kick">Opiniones</div><div class="h2">Lo que dicen <em>nuestras clientas</em></div></div></div></div>
+    <div class="marq rv"><div class="mt" id="mt"></div></div>
+    <p class="tnote">Este carrusel se carga con las reseñas reales de tus clientas.</p>
+  </section>
+
+  <!-- 10 · Ofertas -->
+  <section class="sec" style="padding-top:20px"><div class="wrap">
+    <div class="head rv"><div><div class="kick">Ofertas</div><div class="h2">Maquillaje y skincare <em>en oferta</em></div></div><a class="link" href="#prods">Ver todas</a></div>
+    <div class="grid" id="g3"></div>
+  </div></section>
+
+  <!-- 11 · Carrusel de reels (reemplaza «Por qué elegirnos») -->
+  <section class="sec rls" id="reels"><div class="wrap">
+    <div class="head rv"><div><div class="kick">@lascarolitas.store</div><div class="h2">Mirá cómo <em>trabajamos</em></div><p class="sub">Novedades, tutoriales y el día a día del local, directo de nuestro Instagram.</p></div>
+      <div class="arr"><button type="button" data-d="-1" aria-label="Anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg></button><button type="button" data-d="1" aria-label="Siguiente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg></button></div></div>
+    <div class="rl-tr rv" id="rlt"></div>
+    <div class="rl-f"><a href="https://www.instagram.com/lascarolitas.store/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/></svg>Seguinos en Instagram</a></div>
+  </div></section>
+
+  <!-- 12 · Preguntas frecuentes -->
+  <section class="sec" id="faq"><div class="wrap faq-g">
+    <div class="rv"><div class="kick">Ayuda</div><div class="h2">Preguntas <em>frecuentes</em></div><p class="sub">Si te queda alguna duda, escribinos por WhatsApp y te asesoramos.</p></div>
+    <div class="rv" style="--i:1" id="fq"></div>
+  </div></section>
+
+  <!-- 13 · Local -->
+  <section class="sec" style="padding:0"><div class="wrap">
+    <div class="map rv">
+      <div class="map-i">
+        <div class="kick">Nuestro local</div>
+        <div class="h2">Vení a <em>conocernos</em></div>
+        <div class="mr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><div><b>Vicente López 1194</b><span>Bahía Blanca, Buenos Aires</span></div></div>
+        <div class="mr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/></svg><div><b>Envíos a todo el país</b><span>O retirás tu pedido en el local</span></div></div>
+        <a class="btn k" href="https://maps.google.com/?q=Vicente+Lopez+1194+Bahia+Blanca" target="_blank" rel="noopener">Cómo llegar</a>
+      </div>
+      <div class="map-p"><img src="local.jpg" alt="Local de Las Carolita's"></div>
+    </div>
+  </div></section>
+
+  <!-- 14 · Llamado a la acción -->
+  <section class="sec" style="padding-bottom:0;padding-top:40px"><div class="wrap">
+    <div class="cta-b rv">
+      <svg class="spk" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.2 6.8L21 11l-6.8 2.2L12 20l-2.2-6.8L3 11l6.8-2.2z"/></svg>
+      <div><div class="kick">Las Carolita's</div><div class="h2">Tu rutina de belleza, <em>más fácil.</em></div><p class="sub">Comprá online en 3 cuotas sin interés o escribinos y te ayudamos a elegir.</p></div>
+      <div class="btns"><a class="btn" href="#prods">Comprar ahora</a><a class="btn w" href="#top">Asesorame por WhatsApp</a></div>
+    </div>
+  </div></section>
+
+  </div><!-- /home -->
+
+  <!-- FICHA DE PRODUCTO -->
+  <main id="ficha" hidden>
+    <div class="wrap">
+      <div class="crumb"><a href="#inicio" data-go="home">Inicio</a><span>/</span><a href="#inicio" data-go="home">Uñas</a><span>/</span><b id="fxName2">PinkMask</b></div>
+      <div class="fx">
+        <div class="fx-gal">
+          <div class="fx-main"><img id="fxImg" src="ce-moon.jpg" alt=""><span class="tag">Nuevo</span></div>
+          <div class="fx-th" id="fxTh"></div>
+        </div>
+        <div class="fx-info">
+          <div class="fx-tags" id="fxTags"><span>Original</span><span>Envío a todo el país</span></div>
+          <h1 id="fxName">PinkMask</h1>
+          <div class="fx-st"><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3 6.6 7 .7-5.3 4.8 1.5 7L12 17.5 5.8 21l1.5-7L2 9.3l7-.7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3 6.6 7 .7-5.3 4.8 1.5 7L12 17.5 5.8 21l1.5-7L2 9.3l7-.7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3 6.6 7 .7-5.3 4.8 1.5 7L12 17.5 5.8 21l1.5-7L2 9.3l7-.7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3 6.6 7 .7-5.3 4.8 1.5 7L12 17.5 5.8 21l1.5-7L2 9.3l7-.7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3 6.6 7 .7-5.3 4.8 1.5 7L12 17.5 5.8 21l1.5-7L2 9.3l7-.7z"/></svg><a href="#tst" data-go="home">Ver opiniones</a></div>
+
+          <div class="emb">
+            <div class="emb-r"><span>Precio</span><b id="fxP">$00.000</b></div>
+            <div class="emb-r best"><span>Con transferencia<em>-00 %</em></span><b id="fxT">$00.000</b></div>
+            <div class="emb-r"><span>En cuotas</span><b class="cu" id="fxC">3 cuotas sin interés de $0.000</b></div>
+          </div>
+
+          <div class="hoy">
+            <div class="hoy-i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/></svg></div>
+            <div class="hoy-t"><b>Envío gratis desde $120.000</b><span>Sumá productos a tu carrito y el envío te sale gratis</span></div>
+          </div>
+
+          <div class="fx-lbl">Presentación</div>
+          <div class="fx-op" id="fxOp"><span class="on">Unidad</span><span>Pack x3</span></div>
+
+          <div class="fx-buy">
+            <div class="qty"><button type="button" data-q="-1">−</button><b id="qty">1</b><button type="button" data-q="1">+</button></div>
+            <a class="btn" href="#ficha" id="fxAdd">Agregar al carrito</a>
+          </div>
+          <a class="fx-wa" href="#ficha"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 12a9 9 0 0 1-13.5 7.8L3 21l1.2-4.4A9 9 0 1 1 21 12z"/></svg>¿Dudas con el tono o el uso? Te asesoramos por WhatsApp</a>
+
+          <div class="ent">
+            <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/></svg><span><b>Envíos a todo el país</b>Gratis superando $120.000</span></div>
+            <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 21h18M5 21V9l7-5 7 5v12"/><path d="M10 21v-6h4v6"/></svg><span><b>Retiro en el local</b>Vicente López 1194 · Bahía Blanca</span></div>
+          </div>
+          <div class="gar">
+            <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3l8 3v6c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V6z"/><path d="m8.5 12 2.5 2.5 4.5-5"/></svg>Producto original</div>
+            <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>3 cuotas sin interés</div>
+            <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M21 12a9 9 0 0 1-13.5 7.8L3 21l1.2-4.4A9 9 0 1 1 21 12z"/></svg>Asesoramiento</div>
+          </div>
+          <p class="fx-nota">Precios de ejemplo: el precio, la transferencia y las cuotas salen de tu Tiendanube.</p>
+
+          <div class="fx-acc">
+            <details class="fq" open><summary>Descripción<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 5v14M5 12h14"/></svg></summary><p id="fxD"></p></details>
+            <details class="fq"><summary>Envíos y retiro<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 5v14M5 12h14"/></svg></summary><p>Enviamos a todo el país, gratis superando los $120.000. También podés retirarlo por el local, en Vicente López 1194, Bahía Blanca.</p></details>
+            <details class="fq"><summary>Medios de pago<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 5v14M5 12h14"/></svg></summary><p>Tarjetas en 3 cuotas sin interés, débito y transferencia.</p></details>
+          </div>
+        </div>
+      </div>
+      <div class="head" style="margin-top:70px"><div><div class="kick">Combinalo con</div><div class="h2">También te puede <em>gustar</em></div></div></div>
+      <div class="grid" id="g4"></div>
+    </div>
+    <div class="fx-bar"><div><small id="fxBarN">PinkMask</small><b id="fxBarT">$00.000 <i>con transferencia</i></b></div><a class="btn" href="#ficha">Agregar</a></div>
+  </main>
+
+  <!-- 15 · Pie -->
+  <footer class="foot"><div class="wrap">
+    <div class="fg">
+      <div><a class="logo" href="#top"><img src="logo.png" alt=""></a><p>Todo para tus uñas, pestañas, skincare, cuidado corporal y maquillaje. Pioneras en Bahía Blanca en marcas hipoalergénicas.</p></div>
+      <div><h4>Categorías</h4><ul><li>Uñas</li><li>Maquillaje</li><li>Skincare</li><li>Cuerpo</li><li>Pestañas</li></ul></div>
+      <div><h4>Contacto</h4><ul><li>WhatsApp 0291 15-508-5611</li><li>Instagram @lascarolitas.store</li><li>Vicente López 1194, Bahía Blanca</li></ul></div>
+      <div><h4>Medios de pago</h4><div class="pay"><span>Visa</span><span>Mastercard</span><span>Amex</span><span>Naranja</span><span>Transferencia</span></div></div>
+    </div>
+    <div class="fb"><span>© 2026 Las Carolita's</span><span>Diseño y desarrollo: PRAXIS</span></div>
+  </div></footer>
+  <a class="wa" href="#top" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.4 14.1c-.2.6-1.300 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-3.9-4.7-4.1-.1-.2-1.1-1.5-1.1-2.9s.7-2.1 1-2.4c.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.4.6-.4.4c-.1.2-.3.3-.1.6.2.3.7 1.2 1.6 1.9 1.100 1 2 1.3 2.3 1.4.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l2 1c.3.1.5.2.5.3.1.1.1.6-.1 1.4z"/></svg></a>
+ </div>
+ </div>
+</div>
+</div>
+
+<script>
+document.documentElement.classList.add('js');
+// [foto, nombre, línea, etiqueta]
+const P=[
+ ['ce-moon.jpg','PinkMask Gel Color · Moon Dust Cat Eye','Colección Cat Eye','Nuevo'],
+ ['ce-champ.jpg','PinkMask Gel Color · Champagne Pearl Cat Eye','Colección Cat Eye','Nuevo'],
+ ['ce-blush.jpg','PinkMask Gel Color · Blush Aura Cat Eye','Colección Cat Eye','Nuevo'],
+ ['ce-lav.jpg','PinkMask Gel Color · Lavender Halo Cat Eye','Colección Cat Eye','Nuevo'],
+ ['ce-pist.jpg','PinkMask Gel Color · Pistacchio Glow Cat Eye','Colección Cat Eye',''],
+ ['ce-sea.jpg','PinkMask Gel Color · Seafoam Gleam Cat Eye','Colección Cat Eye',''],
+ ['ce-peach.jpg','PinkMask Gel Color · Peach Glow Cat Eye','Colección Cat Eye',''],
+ ['ce-misty.jpg','PinkMask Gel Color · Misty Rose Cat Eye','Colección Cat Eye',''],
+ ['k-primer.jpg','Kamena primer sin ácido','Preparación','Más vendido'],
+ ['k-sbase.jpg','S-Base · Kamena','Base','Más vendido'],
+ ['k-nivel.jpg','S-Base niveladora Kapping Gel · Kamena','Construcción',''],
+ ['k-top.jpg','Top coat seco · Kamena','Finalización',''],
+ ['k-cherry.jpg','Kamena Gel Color · Cherry','Semipermanente',''],
+ ['k-plata.jpg','Kamena Gel Color · Plata','Semipermanente',''],
+ ['k-glit.jpg','Kamena Gel Color · Glitter holográfico dorado','Semipermanente',''],
+ ['k-menta.jpg','Kamena Gel Color · Menta','Semipermanente',''],
+ ['m-rutina.jpg','Rutina de viaje Esenciales Relax','Biobellus',''],
+ ['m-swirl.jpg','Brillo labial Swirl','Maquillaje',''],
+ ['m-emul.jpg','Emulsión hidratante aloe y urea','Biobellus',''],
+ ['m-paleta.jpg','Paleta de sombras mate','Maquillaje',''],
+ ['m-suero.jpg','Suero facial iluminador','Biobellus',''],
+ ['m-lip.jpg','Delineador de labios','Maquillaje',''],
+ ['m-cel.jpg','Crema celulitis control','Biobellus','']].map((p,i)=>[...p,i]);
+const card=(p,k,off)=>`<a class="card rv" style="--i:${k%4}" href="#producto" data-p="${p[4]}"><div class="ph"><img src="${p[0]}" alt="${p[1]}">${off?'<span class="tag off">-00 %</span>':(p[3]?`<span class="tag">${p[3]}</span>`:'')}</div><h3>${p[1]}</h3><div class="lb">${p[2]}</div><div class="pr"><b>$00.000${off?'<s>$00.000</s>':''}</b><span class="tr">$00.000 con transferencia</span><span class="cu">3 cuotas sin interés de $0.000</span></div></a>`;
+const $=id=>document.getElementById(id);
+$('g1').innerHTML=P.slice(0,8).map((p,k)=>card(p,k)).join('');
+$('g2').innerHTML=P.slice(8,16).map((p,k)=>card(p,k)).join('');
+$('g3').innerHTML=[P[16],P[17],P[19],P[20]].map((p,k)=>card(p,k,1)).join('');
+$('g4').innerHTML=[P[9],P[11],P[8],P[17]].map((p,k)=>card(p,k)).join('');
+const star='<svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3 6.6 7 .7-5.3 4.8 1.5 7L12 17.5 5.8 21l1.5-7L2 9.3l7-.7z"/></svg>';
+const T=Array.from({length:6},(_,i)=>`<div class="tc"><div class="st">${star.repeat(5)}</div><p>Opinión real de tu clienta</p><div class="ln" style="width:${92-i*6}%"></div><div class="ln" style="width:${70+i*4}%"></div><div class="who"><i></i><div>Nombre de la clienta<small>Compró en Las Carolita's</small></div></div></div>`).join('');
+$('mt').innerHTML=T+T;
+// reels
+const R=['Armamos tu pedido','Nuestro equipo','Novedad en maquillaje','Nueva colección','Tips para tus clientas','Tutorial de cejas','Tu compra paso a paso','Cumple de la casa'];
+const sndB='<button class="snd" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="m17 9 4 6M21 9l-4 6"/></svg><span>Activar sonido</span></button>';
+$('rlt').innerHTML=R.map((t,i)=>`<div class="rl"><div class="ig"><img src="logo.png" alt="">${t}</div><video class="av snd-v" src="r${i+1}.mp4" poster="r${i+1}.jpg" muted loop playsinline preload="none"></video>${sndB}</div>`).join('');
+document.querySelectorAll('.arr button').forEach(b=>b.addEventListener('click',()=>{const t=$('rlt');t.scrollBy({left:(+b.dataset.d)*t.querySelector('.rl').offsetWidth*2,behavior:'smooth'})}));
+const F=[['¿Hacen envíos a todo el país?','Sí, enviamos a todo el país. Superando los $120.000 el envío es gratis.'],['¿Puedo retirar mi compra en el local?','Sí, podés retirarla en Vicente López 1194, Bahía Blanca.'],['¿Cuántas cuotas tengo?','Tenés 3 cuotas sin interés en toda la tienda.'],['¿Los productos son originales?','Sí. Trabajamos con marcas reconocidas como Kamena, PinkMask, Biobellus, Biocom, Paris Night y Neicha, y somos pioneras en Bahía Blanca en marcas hipoalergénicas.'],['¿Me pueden asesorar antes de comprar?','Claro. Escribinos por WhatsApp, seas profesional o estés buscando algo para vos, y te ayudamos a elegir.']];
+$('fq').innerHTML=F.map((f,i)=>`<details class="fq"${i?'':' open'}><summary>${f[0]}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 5v14M5 12h14"/></svg></summary><p>${f[1]}</p></details>`).join('');
+
+// aparición + videos solo a la vista
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+setTimeout(()=>document.querySelectorAll('.rv').forEach(el=>{const r=el.getBoundingClientRect();if(r.top<innerHeight)el.classList.add('in')}),1500);
+// siempre en silencio salvo que la persona toque «Activar sonido»; al salir de pantalla o de la pestaña vuelve a silencio
+const silenciar=v=>{v.muted=true;const s=v.parentElement.querySelector('.snd span');if(s)s.textContent='Activar sonido'};
+const vo=new IntersectionObserver(es=>es.forEach(e=>{const v=e.target;if(e.isIntersecting){if(v.preload==='none')v.preload='auto';v.play().catch(()=>{})}else{v.pause();silenciar(v)}}),{threshold:.25});
+document.querySelectorAll('video.av').forEach(v=>{v.muted=true;vo.observe(v)});
+document.addEventListener('visibilitychange',()=>{if(document.hidden)document.querySelectorAll('video').forEach(v=>{v.pause();silenciar(v)})});
+addEventListener('pagehide',()=>document.querySelectorAll('video').forEach(v=>{v.pause();silenciar(v)}));
+document.querySelectorAll('.snd').forEach(b=>b.addEventListener('click',()=>{const v=b.parentElement.querySelector('video');document.querySelectorAll('.snd-v').forEach(o=>{if(o!==v)silenciar(o)});v.muted=!v.muted;if(!v.muted){v.currentTime=0;v.play()}b.querySelector('span').textContent=v.muted?'Activar sonido':'Silenciar'}));
+
+// ---------- ficha ----------
+const DS=['Esmaltado semipermanente con efecto ojo de gato de la nueva colección PinkMask. Se usa con imán para lograr el reflejo. Curado en cabina LED/UV.','Producto Kamena para manicuría profesional, de alta adherencia y duración. Curado en cabina LED/UV.','Producto de marca original, seleccionado por nuestro equipo.'];
+const fm=n=>'$'+n.toLocaleString('es-AR');
+const play='<span class="pl"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4l13 8-13 8z"/></svg></span>';
+function verMedia(src){const m=document.querySelector('.fx-main');const old=m.querySelector('img,video');let el;
+  if(src.endsWith('.mp4')){el=document.createElement('video');el.src=src;el.poster=src.replace('.mp4','.jpg');el.muted=true;el.loop=true;el.playsInline=true;el.autoplay=true;}
+  else{el=document.createElement('img');el.src=src;el.alt='';}
+  old.replaceWith(el);if(el.tagName==='VIDEO'){el.play().catch(()=>{})}}
+function abrir(i){const p=P[i]||P[0];
+  $('fxName').textContent=$('fxName2').textContent=$('fxBarN').textContent=p[1];
+  $('fxD').textContent=DS[i<8?0:i<16?1:2];
+  const vid=i<8?'hero.mp4':i<16?'c-unas.mp4':'c-maq.mp4';
+  const g=[p[0],(P[i+1]||P[i-1])[0],vid];
+  $('fxTh').innerHTML=g.map((s,k)=>`<button type="button" class="${k?'':'on'}" data-src="${s}"><img src="${s.endsWith('.mp4')?s.replace('.mp4','.jpg'):s}" alt="">${s.endsWith('.mp4')?play:''}</button>`).join('');
+  verMedia(g[0]);$('qty').textContent=1;}
+function vista(v,i){const f=v==='ficha';$('home').hidden=f;$('ficha').hidden=!f;
+  document.querySelectorAll('.seg.pg button').forEach(b=>b.classList.toggle('on',b.dataset.v===v));
+  if(f)abrir(i??0);
+  document.querySelectorAll(f?'#home video':'#ficha video').forEach(x=>{x.pause();x.muted=true});
+  document.querySelectorAll('.rv').forEach(el=>el.classList.add('in'));
+  $('screen').scrollTop=0;window.scrollTo(0,0);}
+document.addEventListener('click',e=>{
+  const c=e.target.closest('a.card');if(c){e.preventDefault();vista('ficha',+c.dataset.p);return}
+  const g=e.target.closest('[data-go="home"]');if(g){e.preventDefault();vista('home');return}
+  const t=e.target.closest('.fx-th button');if(t){document.querySelectorAll('.fx-th button').forEach(b=>b.classList.toggle('on',b===t));verMedia(t.dataset.src);return}
+  const o=e.target.closest('.fx-op span');if(o){document.querySelectorAll('.fx-op span').forEach(b=>b.classList.toggle('on',b===o));return}
+  const q=e.target.closest('[data-q]');if(q){$('qty').textContent=Math.max(1,+$('qty').textContent+ +q.dataset.q);return}
+  if(e.target.closest('#ficha a[href="#ficha"]'))e.preventDefault();
+});
+document.querySelectorAll('.seg.pg button').forEach(b=>b.addEventListener('click',()=>vista(b.dataset.v)));
+// PC / celular
+const dev=$('device');
+document.querySelectorAll('.seg:not(.pg) button').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.seg:not(.pg) button').forEach(x=>x.classList.toggle('on',x===b));dev.classList.toggle('mob',b.dataset.m==='mob');$('screen').scrollTop=0}));
+const H=location.hash;if(H.includes('celular'))document.querySelector('[data-m=mob]').click();if(H.includes('producto'))vista('ficha',0);
+document.addEventListener('keydown',e=>{if(e.key==='m'||e.key==='M')document.querySelector('.seg:not(.pg) button:not(.on)').click()});
+</script>
+</body>
+</html>
